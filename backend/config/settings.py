@@ -1,6 +1,3 @@
-
-
-
 from pathlib import Path
 import os
 import cloudinary
@@ -12,22 +9,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
 
-# ========================
+# ===================================
 # SECURITY
-# ========================
-SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-default-key-change-me")
+# ===================================
+SECRET_KEY = os.getenv(
+    "SECRET_KEY",
+    "django-insecure-default-key-change-me"
+)
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
-    "localhost",
     "127.0.0.1",
+    "localhost",
     ".onrender.com",
     "ai-job-portal-ww2o.onrender.com",
 ]
-# ========================
-# APPS
-# ========================
+
+
+# ===================================
+# INSTALLED APPS
+# ===================================
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -35,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     "whitenoise.runserver_nostatic",
 
     "rest_framework",
@@ -53,29 +56,28 @@ INSTALLED_APPS = [
     "offer_letters",
     "mock_interview",
 
-
-    "core",   # ✅ IMPORTANT FIX
+    "core",
 ]
 
 
+# ===================================
+# CLOUDINARY
+# ===================================
 cloudinary.config(
-    cloud_name=os.getenv(
-        "CLOUDINARY_CLOUD_NAME"
-    ),
-    api_key=os.getenv(
-        "CLOUDINARY_API_KEY"
-    ),
-    api_secret=os.getenv(
-        "CLOUDINARY_API_SECRET"
-    ),
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
 )
-# ========================
-# MIDDLEWARE
-# ========================
 
+
+# ===================================
+# MIDDLEWARE
+# ===================================
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+
     "whitenoise.middleware.WhiteNoiseMiddleware",
+
     "corsheaders.middleware.CorsMiddleware",
 
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -86,17 +88,15 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+
 ROOT_URLCONF = "config.urls"
 
+WSGI_APPLICATION = "config.wsgi.application"
 
-# ========================
+
+# ===================================
 # TEMPLATES
-# ========================
-OPENROUTER_API_KEY = os.getenv(
-    "OPENROUTER_API_KEY"
-)
-
-
+# ===================================
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -113,30 +113,26 @@ TEMPLATES = [
 ]
 
 
-WSGI_APPLICATION = "config.wsgi.application"
-
-
-# ========================
+# ===================================
 # DATABASE
-# ========================
-
+# ===================================
 DATABASES = {
     "default": dj_database_url.config(
         default=f"sqlite:///{BASE_DIR}/db.sqlite3",
-        conn_max_age=600
+        conn_max_age=600,
     )
 }
 
 
-# ========================
-# AUTH
-# ========================
+# ===================================
+# CUSTOM USER
+# ===================================
 AUTH_USER_MODEL = "accounts.User"
 
 
-# ========================
-# DRF
-# ========================
+# ===================================
+# REST FRAMEWORK
+# ===================================
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
@@ -158,23 +154,27 @@ REST_FRAMEWORK = {
 }
 
 
-# ========================
+# ===================================
 # CORS
-# ========================
+# ===================================
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-     "https://ai-job-portal-m4czieq5i-arunimas-projects-140d0a2a.vercel.app",
-   
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.onrender.com",
-    "https://ai-job-portal-m4czieq5i-arunimas-projects-140d0a2a.vercel.app",
+    "https://ai-job-portal-ww2o.onrender.com",
 ]
-# ========================
-# STATIC
-# ========================
 
+
+# ===================================
+# OPENROUTER
+# ===================================
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+
+
+# ===================================
+# STATIC FILES
+# ===================================
 STATIC_URL = "static/"
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
@@ -185,7 +185,9 @@ STATICFILES_STORAGE = (
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
-# ========================
-# DEFAULT PK
-# ========================
+
+
+# ===================================
+# DEFAULT AUTO FIELD
+# ===================================
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
