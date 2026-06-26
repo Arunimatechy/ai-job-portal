@@ -1,12 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: "https://ai-job-portal-ww2o.onrender.com/api",
 });
 
 api.interceptors.request.use((config) => {
 
-    // Don't send token for register and login
     if (
         config.url === "/auth/register/" ||
         config.url === "/token/"
