@@ -159,10 +159,12 @@ REST_FRAMEWORK = {
 # ===================================
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://ai-job-portal-lukjix2nb-arunimas-projects-140d0a2a.vercel.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://ai-job-portal-ww2o.onrender.com",
+    "https://*.onrender.com",
+    "https://ai-job-portal-lukjix2nb-arunimas-projects-140d0a2a.vercel.app",
 ]
 
 
