@@ -62,17 +62,14 @@ export default function CreateJob() {
       navigate("/my-jobs");
 
 
-    }catch(error){
+    } catch (error) {
 
-      console.log(error);
+  console.log("Status:", error.response?.status);
+  console.log("Response:", error.response?.data);
 
+  alert(JSON.stringify(error.response?.data));
 
-      toast.error(
-        error?.response?.data?.detail ||
-        "Failed to create job"
-      );
-
-    }
+}
 
   };
 
