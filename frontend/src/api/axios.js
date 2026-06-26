@@ -1,12 +1,12 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:8000/api",
+    baseURL: import.meta.env.VITE_API_URL,
 });
 
 api.interceptors.request.use((config) => {
 
-    // Don't send token when registering or logging in
+    // Don't send token for register and login
     if (
         config.url === "/auth/register/" ||
         config.url === "/token/"

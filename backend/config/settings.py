@@ -20,9 +20,10 @@ SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-default-key-change-me")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = [
-    ".onrender.com",
     "localhost",
     "127.0.0.1",
+    ".onrender.com",
+    "ai-job-portal-ww2o.onrender.com",
 ]
 # ========================
 # APPS
@@ -164,7 +165,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
 
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.onrender.com",
+    "https://*.vercel.app",
+]
 # ========================
 # STATIC
 # ========================
@@ -172,6 +176,10 @@ CORS_ALLOWED_ORIGINS = [
 STATIC_URL = "static/"
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_STORAGE = (
+    "whitenoise.storage.CompressedManifestStaticFilesStorage"
+)
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
