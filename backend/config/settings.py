@@ -60,6 +60,7 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 # ===================================
 # CLOUDINARY
 # ===================================
@@ -73,21 +74,27 @@ cloudinary.config(
 # ===================================
 # MIDDLEWARE
 # ===================================
+
 MIDDLEWARE = [
+
+    "corsheaders.middleware.CorsMiddleware",
+
     "django.middleware.security.SecurityMiddleware",
 
     "whitenoise.middleware.WhiteNoiseMiddleware",
 
-    "corsheaders.middleware.CorsMiddleware",
-
     "django.contrib.sessions.middleware.SessionMiddleware",
+
     "django.middleware.common.CommonMiddleware",
+
     "django.middleware.csrf.CsrfViewMiddleware",
+
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+
     "django.contrib.messages.middleware.MessageMiddleware",
+
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-
 
 ROOT_URLCONF = "config.urls"
 
@@ -157,14 +164,11 @@ REST_FRAMEWORK = {
 # ===================================
 # CORS
 # ===================================
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    
-]
+
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.onrender.com",
-   
+    "https://ai-job-portal-ww2o.onrender.com",
+    "https://*.vercel.app",
 ]
 
 
