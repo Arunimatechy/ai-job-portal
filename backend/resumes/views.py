@@ -21,7 +21,6 @@ class UploadResumeView(APIView):
     permission_classes = [IsAuthenticated, IsCandidate]
 
     def post(self, request):
-
         try:
             pdf_file = request.FILES.get("resume")
 
