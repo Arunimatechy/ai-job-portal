@@ -1,20 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../features/auth/authSlice";
 
 
 export default function Navbar() {
 
-  const navigate = useNavigate();
+const navigate = useNavigate();
+const dispatch = useDispatch();
 
-
-  const logout = () => {
-
-    localStorage.removeItem("access");
-    localStorage.removeItem("refresh");
-    localStorage.removeItem("role");
-
-    navigate("/", { replace:true });
-
-  };
+const handleLogout = () => {
+  dispatch(logout());
+  navigate("/", { replace: true });
+};
 
 
   return (
@@ -112,10 +109,10 @@ export default function Navbar() {
 
 
         <button
-          onClick={logout}
-          style={logoutBtn}
+         onClick={handleLogout}
+  style={logoutBtn}
         >
-          🚪 Logout
+           Logout
         </button>
 
 

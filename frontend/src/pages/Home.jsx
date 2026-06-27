@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import Navbar from "../components/Navbar";
 import PublicNavbar from "../components/PublicNavbar";
 import Footer from "../components/Footer";
 
 export default function Home() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [role, setRole] = useState("");
+  const isLoggedIn = useSelector(
+  (state) => state.auth.isAuthenticated
+);
 
-  useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("access"));
-    setRole(localStorage.getItem("role") || "");
-  }, []);
+const role = useSelector(
+  (state) => state.auth.role
+);
 
   const dashboardLink =
     role === "recruiter"

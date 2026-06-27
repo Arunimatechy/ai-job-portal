@@ -1,16 +1,14 @@
 import { Helmet } from "react-helmet-async";
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import Navbar from "../components/Navbar";
 import PublicNavbar from "../components/PublicNavbar";
 import Footer from "../components/Footer";
 
 export default function About() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("access"));
-  }, []);
+  const isLoggedIn = useSelector(
+  (state) => state.auth.isAuthenticated
+);
 
   return (
     <>
