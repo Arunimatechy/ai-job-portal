@@ -15,79 +15,79 @@ from accounts.permissions import IsCandidate
 from ai_engine.models import ResumeAnalysis
 
 
+
+
 class UploadResumeView(APIView):
-
-    permission_classes = [
-        IsAuthenticated,
-        IsCandidate
-    ]
-
+    permission_classes = [IsAuthenticated, IsCandidate]
 
     def post(self, request):
 
-        pdf_file = request.FILES.get("resume")
+        try:
+            pdf_file = request.FILES.get("resume")
 
+            if pdf_file is None:
+                return Response(
+                    {"error": "Resume file is required"},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
 
-        if not pdf_file:
+            print("STEP 1 : File received")
+
+            extracted_text = extract_pdf_text(pdf_file)
+
+            print("STEP 2 : PDF extracted")
+
+            pdf_file.seek(0)
+
+            cloudinary_response = upload(
+                pdf_file,
+                resource_type="raw",
+                folder="resumes"
+            )
+
+            print("STEP 3 : Uploaded to Cloudinary")
+
+            resume_url = cloudinary_response["secure_url"]
+
+            resume, created = Resume.objects.update_or_create(
+                candidate=request.user,
+                defaults={
+                    "resume_url": resume_url,
+                    "extracted_text": extracted_text,
+                },
+            )
+
+            print("STEP 4 : Resume saved")
+
+            ResumeAnalysis.objects.filter(
+                resume=resume
+            ).delete()
+
+            print("STEP 5 : Old analysis deleted")
+
+            serializer = ResumeSerializer(resume)
+
+            return Response(
+                serializer.data,
+                status=status.HTTP_201_CREATED,
+            )
+
+        except Exception as e:
+            import traceback
+
+            traceback.print_exc()
+
             return Response(
                 {
-                    "error": "Resume file required"
+                    "error": str(e)
                 },
-                status=400
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
 
-        extracted_text = extract_pdf_text(pdf_file)
 
-
-        pdf_file.seek(0)
-
-
-        cloudinary_response = upload(
-            pdf_file,
-            resource_type="raw",
-            folder="resumes"
-        )
-
-
-        resume_url = cloudinary_response["secure_url"]
-
-
-
-        # Save / Update Resume
-        resume, created = Resume.objects.update_or_create(
-
-            candidate=request.user,
-
-            defaults={
-
-                "resume_url": resume_url,
-
-                "extracted_text": extracted_text
-            }
-        )
-
-
-
-        # Remove old AI analysis
-        ResumeAnalysis.objects.filter(
-            resume=resume
-        ).delete()
-
-
-
-        serializer = ResumeSerializer(
-            resume
-        )
-
-
-        return Response(
-
-            serializer.data,
-
-            status=status.HTTP_201_CREATED
-        )
-
+        
+       
 class ResumeDetailView(APIView):
 
     permission_classes = [
