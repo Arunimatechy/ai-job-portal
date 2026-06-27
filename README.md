@@ -421,9 +421,21 @@ GET    /api/ai/ranking/
 
 Python Full Stack Developer
 
-* GitHub: [https://github.com/yourusername](https://github.com/yourusername)
-* LinkedIn: [https://linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+## 🚀 Live Demo
 
+👉 https://ai-job-portal-f52vecpg6-arunimas-projects-140d0a2a.vercel.app/
+
+## 📂 GitHub Repository
+
+👉 https://github.com/Arunimatechy/ai-job-portal
+
+## 👨‍💻 Developer
+
+**Arunima S**
+
+- 💼 Role: Python Full Stack Developer
+- GitHub: https://github.com/Arunimatechy
+- LinkedIn: https://linkedin.com/in/arunimaSaru
 ---
 
 # ⭐ Support
