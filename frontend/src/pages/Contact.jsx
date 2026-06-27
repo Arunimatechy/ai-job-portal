@@ -1,10 +1,16 @@
 import { Helmet } from "react-helmet-async";
+import { useEffect, useState } from "react";
+
 import Navbar from "../components/Navbar";
 import PublicNavbar from "../components/PublicNavbar";
 import Footer from "../components/Footer";
 
 export default function Contact() {
-  const isLoggedIn = !!localStorage.getItem("access");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("access"));
+  }, []);
 
   return (
     <>
@@ -17,8 +23,7 @@ export default function Contact() {
       <div
         style={{
           minHeight: "85vh",
-          background:
-            "radial-gradient(circle at top,#1e3a8a,#020617 70%)",
+          background: "radial-gradient(circle at top,#1e3a8a,#020617 70%)",
           color: "white",
           padding: "70px 20px",
         }}
@@ -28,18 +33,15 @@ export default function Contact() {
             maxWidth: "1000px",
             margin: "auto",
             display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit,minmax(300px,1fr))",
+            gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
             gap: "30px",
           }}
         >
-          {/* Left */}
           <div>
             <h1
               style={{
                 fontSize: "50px",
-                background:
-                  "linear-gradient(90deg,#60a5fa,#a78bfa)",
+                background: "linear-gradient(90deg,#60a5fa,#a78bfa)",
                 WebkitBackgroundClip: "text",
                 color: "transparent",
               }}
@@ -54,15 +56,11 @@ export default function Contact() {
                 lineHeight: "1.7",
               }}
             >
-              Have questions about AI hiring, recruitment automation or
-              the platform? Feel free to contact us.
+              Have questions about AI hiring, recruitment automation or the
+              platform? Feel free to contact us.
             </p>
 
-            <div
-              style={{
-                marginTop: "30px",
-              }}
-            >
+            <div style={{ marginTop: "30px" }}>
               <Info
                 icon="👨‍💻"
                 title="Developer"
@@ -89,7 +87,6 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right */}
           <div
             style={{
               background: "rgba(15,23,42,.75)",
@@ -121,11 +118,7 @@ export default function Contact() {
             >
               <h3>AI Job Portal</h3>
 
-              <p
-                style={{
-                  color: "#94a3b8",
-                }}
-              >
+              <p style={{ color: "#94a3b8" }}>
                 React + Django + AI powered recruitment system
               </p>
             </div>
@@ -148,22 +141,10 @@ function Info({ icon, title, value }) {
         alignItems: "center",
       }}
     >
-      <div
-        style={{
-          fontSize: "30px",
-        }}
-      >
-        {icon}
-      </div>
+      <div style={{ fontSize: "30px" }}>{icon}</div>
 
       <div>
-        <h3
-          style={{
-            margin: 0,
-          }}
-        >
-          {title}
-        </h3>
+        <h3 style={{ margin: 0 }}>{title}</h3>
 
         <p
           style={{

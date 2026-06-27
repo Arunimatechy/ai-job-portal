@@ -1,13 +1,19 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useEffect, useState } from "react";
 
 import Navbar from "../components/Navbar";
 import PublicNavbar from "../components/PublicNavbar";
 import Footer from "../components/Footer";
 
 export default function Home() {
-  const isLoggedIn = !!localStorage.getItem("access");
-  const role = localStorage.getItem("role");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [role, setRole] = useState("");
+
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("access"));
+    setRole(localStorage.getItem("role") || "");
+  }, []);
 
   const dashboardLink =
     role === "recruiter"
@@ -167,12 +173,10 @@ function Card({ title, desc }) {
         cursor: "pointer",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.transform =
-          "translateY(-8px)";
+        e.currentTarget.style.transform = "translateY(-8px)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.transform =
-          "translateY(0)";
+        e.currentTarget.style.transform = "translateY(0)";
       }}
     >
       <h3
@@ -197,14 +201,12 @@ function Card({ title, desc }) {
 }
 
 const primaryBtn = {
-  background:
-    "linear-gradient(90deg,#2563eb,#7c3aed)",
+  background: "linear-gradient(90deg,#2563eb,#7c3aed)",
   color: "white",
   textDecoration: "none",
   padding: "16px 38px",
   borderRadius: "999px",
   fontSize: "18px",
   fontWeight: "600",
-  boxShadow:
-    "0 10px 30px rgba(37,99,235,.4)",
+  boxShadow: "0 10px 30px rgba(37,99,235,.4)",
 };

@@ -1,11 +1,16 @@
 import { Helmet } from "react-helmet-async";
+import { useEffect, useState } from "react";
+
 import Navbar from "../components/Navbar";
 import PublicNavbar from "../components/PublicNavbar";
 import Footer from "../components/Footer";
 
 export default function About() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const isLoggedIn = !!localStorage.getItem("access");
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("access"));
+  }, []);
 
   return (
     <>
@@ -18,8 +23,7 @@ export default function About() {
       <div
         style={{
           minHeight: "85vh",
-          background:
-            "radial-gradient(circle at top,#1e40af,#020617 70%)",
+          background: "radial-gradient(circle at top,#1e40af,#020617 70%)",
           color: "white",
           padding: "70px 20px",
         }}
@@ -30,8 +34,6 @@ export default function About() {
             margin: "auto",
           }}
         >
-          {/* Hero */}
-
           <div
             style={{
               textAlign: "center",
@@ -60,18 +62,18 @@ export default function About() {
                 lineHeight: "1.7",
               }}
             >
-              AI Job Portal is an intelligent recruitment platform
-              built using React, Django REST Framework and AI.
+              AI Job Portal is an intelligent recruitment platform built
+              using React, Django REST Framework and Artificial Intelligence.
+              It helps recruiters hire faster while enabling candidates to
+              discover better career opportunities through AI-powered
+              recommendations.
             </p>
           </div>
-
-          {/* Feature Boxes */}
 
           <div
             style={{
               display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit,minmax(280px,1fr))",
+              gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))",
               gap: "25px",
             }}
           >
@@ -80,8 +82,10 @@ export default function About() {
               items={[
                 "Resume Analysis",
                 "AI Candidate Ranking",
+                "AI Resume Screening",
                 "Job Recommendations",
                 "Interview Generation",
+                "Recruiter Dashboard",
                 "Analytics Dashboard",
               ]}
             />
@@ -91,14 +95,14 @@ export default function About() {
               items={[
                 "React.js",
                 "Django REST Framework",
+                "Python",
                 "PostgreSQL",
                 "JWT Authentication",
                 "OpenRouter AI",
+                "Cloudinary",
               ]}
             />
           </div>
-
-          {/* Mission */}
 
           <div
             style={{
@@ -118,9 +122,10 @@ export default function About() {
                 lineHeight: "1.8",
               }}
             >
-              To simplify recruitment by combining artificial
-              intelligence with modern web technology, helping
-              companies find the right talent faster.
+              Our mission is to simplify recruitment by combining Artificial
+              Intelligence with modern web technologies. We empower recruiters
+              to identify the best candidates quickly while helping job seekers
+              find opportunities that match their skills and career goals.
             </p>
           </div>
         </div>
