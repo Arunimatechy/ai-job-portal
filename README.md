@@ -415,28 +415,16 @@ GET    /api/ai/ranking/
 
 ---
 
-# 👨‍💻 Author
+## 👨‍💻 Author
 
-**Arunima S**
-
-Python Full Stack Developer
-
-## 🚀 Live Demo
-
-👉 https://ai-job-portal-f52vecpg6-arunimas-projects-140d0a2a.vercel.app/
-
-## 📂 GitHub Repository
-
-👉 https://github.com/Arunimatechy/ai-job-portal
-
-## 👨‍💻 Developer
-
-**Arunima S**
-
-- 💼 Role: Python Full Stack Developer
-- GitHub: https://github.com/Arunimatechy
-- LinkedIn: https://linkedin.com/in/arunimaSaru
----
+| | |
+|---|---|
+| **Name** | Arunima S |
+| **Role** | Python Full Stack Developer |
+| **Live Demo** | https://ai-job-portal-f52vecpg6-arunimas-projects-140d0a2a.vercel.app/ |
+| **GitHub Repository** | https://github.com/Arunimatechy/ai-job-portal |
+| **GitHub Profile** | https://github.com/Arunimatechy |
+| **LinkedIn** | https://linkedin.com/in/arunimaSaru |
 
 # ⭐ Support
 
